@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Mathis Tomassini – Alternance Bac+3 ASR/DevOps Junior 12 mois – Nantes / Aix-en-Provence. TSSR, Active Directory, Stormshield, GLPI, Linux, Docker."/>
+  <meta name="keywords" content="alternance, administrateur systèmes réseaux, devops, ASR, Nantes, Aix-en-Provence, TSSR, Active Directory, GLPI, Stormshield, Linux"/>
+  <meta name="author" content="Mathis Tomassini"/>
+  <meta property="og:title" content="Mathis Tomassini – Alternance Bac+3 ASR/DevOps"/>
+  <meta property="og:description" content="TSSR ENI Saint-Herblain | Stage CH-Montperrin | Disponible Sept. 2026 – Nantes / Aix-en-Provence"/>
+  <meta property="og:type" content="website"/>
+  <title>Mathis Tomassini — Technicien Systèmes &amp; Réseaux</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    /* ─── THEME TOKENS ─── */
+    :root {
+      --bg:       #070b14; --bg2: #0d1220; --bg3: #111827;
+      --cyan:     #00e5ff; --purple: #8b5cf6; --green: #10b981;
+      --orange:   #f59e0b; --red: #ef4444; --blue: #3b82f6;
+      --text:     #e2e8f0; --muted: #64748b;
+      --glass:    rgba(255,255,255,0.04);
+      --glass-b:  rgba(0,229,255,0.06);
+      --border:   rgba(0,229,255,0.12);
+      --radius:   16px;
+      --mono:     "JetBrains Mono", monospace;
+      --sans:     "Inter", sans-serif;
+    }
+    [data-theme="light"] {
+      --bg: #f0f4ff; --bg2: #e8edf8; --bg3: #dde3f0;
+      --text: #0f172a; --muted: #475569;
+      --glass: rgba(255,255,255,0.7);
+      --glass-b: rgba(0,180,220,0.08);
+      --border: rgba(0,180,220,0.2);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;line-height:1.6;transition:background .3s,color .3s;}
+    ::-webkit-scrollbar{width:4px;}
+    ::-webkit-scrollbar-track{background:var(--bg);}
+    ::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:99px;}
+
+    /* ─── CANVAS ─── */
+    #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.25;}
+
+    /* ─── NAV ─── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(7,11,20,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+    [data-theme="light"] nav{background:rgba(240,244,255,0.9);}
+    .nav-logo{font-family:var(--mono);font-size:.9rem;font-weight:700;color:var(--cyan);letter-spacing:2px;}
+    .nav-logo span{color:var(--muted);}
+    .nav-right{display:flex;align-items:center;gap:1.5rem;}
+    nav ul{display:flex;gap:1.5rem;list-style:none;}
+    nav ul a{font-size:.75rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:.2s;}
+    nav ul a:hover{color:var(--cyan);}
+    .theme-toggle{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--glass);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.2s;color:var(--text);}
+    .theme-toggle:hover{border-color:var(--cyan);}
+
+    /* ─── HERO ─── */
+    #hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 5% 80px;}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.72rem;color:var(--cyan);background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.2);border-radius:99px;padding:.4rem 1rem;margin-bottom:1.5rem;letter-spacing:1px;animation:fadeUp .6s ease both;}
+    .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:pulse 1.5s infinite;}
+    .hero-name{font-size:clamp(3rem,9vw,7rem);font-weight:900;letter-spacing:-3px;line-height:.95;background:linear-gradient(135deg,#fff 20%,var(--cyan) 60%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeUp .8s .1s ease both;}
+    [data-theme="light"] .hero-name{background:linear-gradient(135deg,#0f172a 20%,#0088aa 60%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .hero-sub{font-family:var(--mono);font-size:clamp(.8rem,1.8vw,1rem);color:var(--muted);margin:1.2rem 0 .4rem;animation:fadeUp .8s .2s ease both;}
+    .hero-sub .hl{color:var(--cyan);}
+    #typed-wrap{min-height:2.5rem;animation:fadeUp .8s .3s ease both;display:flex;justify-content:center;align-items:center;}
+    #typed-text{font-family:var(--mono);font-size:clamp(.8rem,1.8vw,1.1rem);color:var(--green);display:inline-block;max-width:90vw;text-align:center;word-break:break-word;}
+    .cursor{display:inline-block;width:2px;height:1.1em;background:var(--green);margin-left:2px;vertical-align:middle;animation:blink .7s steps(1) infinite;}
+
+    /* HERO STATS */
+    .hero-stats{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;margin:2rem 0 2.5rem;animation:fadeUp .8s .4s ease both;}
+    .hstat{text-align:center;}
+    .hstat-num{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:var(--cyan);font-family:var(--mono);}
+    .hstat-label{font-size:.7rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:.1rem;}
+    .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s .5s ease both;}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.6rem;border-radius:99px;font-size:.85rem;font-weight:600;letter-spacing:.5px;text-decoration:none;cursor:pointer;border:none;transition:.25s ease;position:relative;overflow:hidden;}
+    .btn-primary{background:var(--cyan);color:#000;}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,229,255,.35);}
+    .btn-purple{background:var(--purple);color:#fff;}
+    .btn-purple:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,92,246,.35);}
+    .btn-ghost{background:var(--glass);border:1px solid var(--border);color:var(--text);backdrop-filter:blur(10px);}
+    .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);}
+    .hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--muted);font-size:.7rem;font-family:var(--mono);animation:fadeUp 1s 1.2s both;}
+    .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--cyan),transparent);animation:scrollAnim 1.5s ease infinite;}
+
+    /* ─── ALTERNANCE BANNER ─── */
+    #alternance{position:relative;z-index:1;padding:5rem 5%;}
+    .alt-card{max-width:920px;margin:0 auto;border:1px solid rgba(139,92,246,.4);border-radius:28px;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(0,229,255,.04));backdrop-filter:blur(24px);padding:3.5rem;text-align:center;position:relative;overflow:hidden;}
+    .alt-card::before{content:"";position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.2),transparent 70%);top:-150px;right:-120px;pointer-events:none;}
+    .alt-card::after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,.15),transparent 70%);bottom:-100px;left:-100px;pointer-events:none;}
+    .alt-label{font-family:var(--mono);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--purple);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.5rem;}
+    .alt-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.05;margin-bottom:1rem;}
+    .alt-title span{color:var(--cyan);}
+    .alt-desc{color:var(--muted);font-size:.95rem;max-width:620px;margin:0 auto 2rem;}
+    .alt-tags{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-bottom:2rem;}
+    .alt-tag{font-family:var(--mono);font-size:.72rem;padding:.35rem .9rem;border-radius:99px;border:1px solid var(--border);color:var(--cyan);background:rgba(0,229,255,.04);}
+    .alt-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+    /* ─── SECTIONS ─── */
+    section{position:relative;z-index:1;padding:6rem 5%;}
+    .section-label{font-family:var(--mono);font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:.6rem;display:flex;align-items:center;gap:.75rem;}
+    .section-label::before{content:"";flex:0 0 24px;height:1px;background:var(--cyan);}
+    .section-title{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;margin-bottom:3rem;letter-spacing:-1px;}
+
+    /* ─── SKILLS ─── */
+    #skills .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
+    .skill-card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;backdrop-filter:blur(10px);transition:.3s;}
+    .skill-card:hover{border-color:var(--cyan);background:var(--glass-b);transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.3);}
+    .skill-card-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.2rem;}
+    .skill-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+    .skill-card-title{font-weight:700;font-size:.95rem;}
+    .skill-items{display:flex;flex-wrap:wrap;gap:.4rem;}
+    .skill-chip{font-family:var(--mono);font-size:.68rem;padding:.25rem .6rem;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--text);}
+    [data-theme="light"] .skill-chip{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.1);}
+    .notions-chip{margin-top:.75rem;display:inline-block;font-family:var(--mono);font-size:.68rem;padding:.25rem .6rem;border-radius:6px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);color:var(--muted);}
+
+    /* ─── CERTS ─── */
+    #certifications .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;}
+    .cert-card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;backdrop-filter:blur(10px);display:flex;align-items:center;gap:1rem;transition:.25s;}
+    .cert-card:hover{border-color:var(--orange);transform:translateY(-3px);}
+    .cert-badge{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+    .cert-info{flex:1;}
+    .cert-name{font-weight:600;font-size:.85rem;margin-bottom:.15rem;}
+    .cert-issuer{font-size:.72rem;color:var(--muted);font-family:var(--mono);}
+    .cert-status{font-family:var(--mono);font-size:.62rem;padding:.15rem .5rem;border-radius:99px;margin-top:.3rem;display:inline-block;}
+    .cert-done{background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.3);}
+    .cert-wip{background:rgba(245,158,11,.1);color:var(--orange);border:1px solid rgba(245,158,11,.3);}
+
+    /* ─── PARCOURS TIMELINE ─── */
+    #parcours .timeline{position:relative;padding-left:2rem;}
+    #parcours .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cyan),var(--purple),transparent);}
+    .tl-item{position:relative;margin-bottom:2.5rem;opacity:0;transform:translateX(-20px);transition:.6s ease;}
+    .tl-item.visible{opacity:1;transform:translateX(0);}
+    .tl-dot{position:absolute;left:-2rem;top:4px;width:17px;height:17px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);box-shadow:0 0 12px rgba(0,229,255,.4);}
+    .tl-dot.active{background:var(--cyan);}
+    .tl-dot.target{border-color:var(--purple);box-shadow:0 0 12px rgba(139,92,246,.4);}
+    .tl-dot.cert{border-color:var(--orange);}
+    .tl-period{font-family:var(--mono);font-size:.7rem;color:var(--cyan);letter-spacing:1px;margin-bottom:.25rem;}
+    .tl-period.purple{color:var(--purple);}
+    .tl-period.orange{color:var(--orange);}
+    .tl-role{font-weight:700;font-size:1.05rem;margin-bottom:.15rem;}
+    .tl-org{color:var(--muted);font-size:.85rem;margin-bottom:.5rem;}
+    .tl-desc{font-size:.82rem;color:var(--muted);margin-bottom:.6rem;line-height:1.6;}
+    .tl-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+    .tl-tag{font-family:var(--mono);font-size:.65rem;padding:.2rem .5rem;border-radius:4px;background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.15);color:var(--cyan);}
+    .tl-tag.purple{background:rgba(139,92,246,.06);border-color:rgba(139,92,246,.2);color:var(--purple);}
+    .tl-tag.orange{background:rgba(245,158,11,.05);border-color:rgba(245,158,11,.2);color:var(--orange);}
+
+    /* ─── PROJETS ─── */
+    #projets .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
+    .proj-card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;backdrop-filter:blur(10px);transition:.3s;}
+    .proj-card:hover{border-color:var(--purple);transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.3);}
+    .proj-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;}
+    .proj-icon{font-size:1.6rem;}
+    .proj-status{font-family:var(--mono);font-size:.62rem;padding:.2rem .55rem;border-radius:99px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);color:var(--green);}
+    .proj-status.wip{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.3);color:var(--orange);}
+    .proj-name{font-weight:700;font-size:1rem;margin-bottom:.35rem;}
+    .proj-desc{color:var(--muted);font-size:.82rem;margin-bottom:.75rem;line-height:1.5;}
+    .proj-metric{font-family:var(--mono);font-size:.75rem;color:var(--cyan);background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.15);border-radius:6px;padding:.3rem .6rem;margin-bottom:.75rem;display:inline-block;}
+    .proj-stack{display:flex;flex-wrap:wrap;gap:.35rem;}
+    .proj-chip{font-family:var(--mono);font-size:.65rem;padding:.2rem .5rem;border-radius:4px;background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.18);color:var(--purple);}
+
+    /* ─── LANGUES ─── */
+    #langues .lang-grid{display:flex;gap:1.2rem;flex-wrap:wrap;}
+    .lang-card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.8rem;backdrop-filter:blur(10px);display:flex;align-items:center;gap:1rem;transition:.25s;}
+    .lang-card:hover{border-color:var(--cyan);transform:translateY(-3px);}
+    .lang-flag{font-size:2rem;}
+    .lang-name{font-weight:700;font-size:.9rem;}
+    .lang-level{font-family:var(--mono);font-size:.72rem;color:var(--cyan);}
+
+    /* ─── CONTACT ─── */
+    #contact{text-align:center;}
+    .contact-wrap{max-width:760px;margin:0 auto;}
+    .contact-card{background:var(--glass);border:1px solid var(--border);border-radius:24px;padding:2.5rem;backdrop-filter:blur(20px);margin-bottom:1.5rem;}
+    .contact-card p{color:var(--muted);margin-bottom:1.5rem;font-size:.9rem;}
+    .contact-links{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-bottom:1.5rem;}
+    .contact-link{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.3rem;border-radius:99px;background:var(--glass);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.82rem;font-weight:500;transition:.2s;}
+    .contact-link:hover{border-color:var(--cyan);color:var(--cyan);}
+    .contact-link svg{width:15px;height:15px;flex-shrink:0;}
+    .contact-form{background:var(--glass);border:1px solid var(--border);border-radius:24px;padding:2.5rem;backdrop-filter:blur(20px);}
+    .contact-form h3{font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;text-align:left;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+    .form-field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem;}
+    .form-field label{font-family:var(--mono);font-size:.7rem;letter-spacing:1px;color:var(--muted);}
+    .form-field input,.form-field textarea{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;color:var(--text);font-family:var(--sans);font-size:.9rem;transition:.2s;outline:none;}
+    [data-theme="light"] .form-field input,[data-theme="light"] .form-field textarea{background:rgba(0,0,0,.04);color:var(--text);}
+    .form-field input:focus,.form-field textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.1);}
+    .form-field textarea{resize:vertical;min-height:100px;}
+    .cv-download{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;border-radius:99px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);color:var(--green);font-size:.85rem;font-weight:600;text-decoration:none;transition:.2s;}
+    .cv-download:hover{background:rgba(16,185,129,.2);transform:translateY(-2px);}
+
+    /* ─── FOOTER ─── */
+    footer{position:relative;z-index:1;text-align:center;padding:2rem 5%;border-top:1px solid var(--border);font-family:var(--mono);font-size:.7rem;color:var(--muted);}
+    footer span{color:var(--cyan);}
+
+    /* ─── ANIMS & UTILS ─── */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.4);opacity:.6;}}
+    @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+    @keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+    .reveal{opacity:0;transform:translateY(24px);transition:.7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+
+
+    /* ─── MOBILE PREVIEW ─── */
+    .mobile-toggle{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--glass);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.2s;color:var(--text);}
+    .mobile-toggle:hover{border-color:var(--cyan);}
+    body.mobile-mode{display:flex;justify-content:center;background:#111;}
+    body.mobile-mode::before{content:"";position:fixed;inset:0;background:#111;z-index:998;}
+    .mobile-frame{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);width:390px;height:100vh;z-index:999;border-left:10px solid #1a1a2e;border-right:10px solid #1a1a2e;border-top:30px solid #1a1a2e;border-bottom:30px solid #1a1a2e;border-radius:44px;overflow:hidden;box-shadow:0 0 0 2px #333, 0 30px 80px rgba(0,0,0,.8);}
+    .mobile-frame iframe{width:100%;height:100%;border:none;}
+    body.mobile-mode .mobile-frame{display:block;}
+    .mobile-exit{display:none;position:fixed;top:1rem;right:1rem;z-index:1001;background:var(--red);color:#fff;border:none;border-radius:99px;padding:.5rem 1.2rem;font-size:.8rem;font-weight:700;cursor:pointer;font-family:var(--sans);}
+    body.mobile-mode .mobile-exit{display:block;}
+    .mobile-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:6px;background:#333;border-radius:0 0 8px 8px;z-index:1000;}
+    /* ─── PASSIONS ─── */
+    #passions .passion-grid{display:flex;flex-wrap:wrap;gap:1.2rem;justify-content:center;}
+    .passion-card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 2rem;backdrop-filter:blur(10px);display:flex;align-items:center;gap:1rem;transition:.3s;flex:1;min-width:200px;max-width:280px;}
+    .passion-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.3);}
+    .passion-card:nth-child(1):hover{border-color:#a78bfa;}
+    .passion-card:nth-child(2):hover{border-color:#f472b6;}
+    .passion-card:nth-child(3):hover{border-color:var(--green);}
+    .passion-emoji{font-size:2.2rem;flex-shrink:0;}
+    .passion-title{font-weight:700;font-size:.95rem;margin-bottom:.2rem;}
+    .passion-desc{font-size:.78rem;color:var(--muted);line-height:1.4;}
+    @media(max-width:768px){
+      /* NAV mobile */
+      nav{padding:0 4%;height:56px;}
+      nav ul{display:none;}
+      .nav-right{gap:.75rem;}
+      .nav-right .btn{display:none;}
+
+      /* Hero */
+      #hero{padding:90px 5% 60px;}
+      .hero-name{font-size:clamp(2.5rem,12vw,4rem);letter-spacing:-2px;}
+      .hero-stats{gap:1.2rem;}
+      .hstat-num{font-size:1.6rem;}
+      .hero-cta{flex-direction:column;align-items:center;}
+      .hero-cta .btn{width:100%;justify-content:center;max-width:320px;}
+
+      /* Sections */
+      section{padding:4rem 5%;}
+      .section-title{font-size:1.6rem;margin-bottom:2rem;}
+
+      /* Grids */
+      #skills .grid,#projets .grid{grid-template-columns:1fr;}
+      .cert-grid{grid-template-columns:1fr 1fr;}
+
+      /* Alternance */
+      .alt-card{padding:2rem 1.5rem;border-radius:20px;}
+      .alt-title{font-size:1.6rem;}
+      .alt-actions{flex-direction:column;align-items:center;}
+      .alt-actions .btn{width:100%;justify-content:center;max-width:320px;}
+
+      /* Timeline */
+      #parcours .timeline{padding-left:1.5rem;}
+      .tl-dot{left:-1.5rem;}
+
+      /* Contact */
+      .contact-card,.contact-form{padding:1.5rem;}
+      .form-row{grid-template-columns:1fr;}
+      .contact-links{flex-direction:column;align-items:stretch;}
+      .contact-link,.cv-download{justify-content:center;}
+
+      /* Passions */
+      .passion-card{min-width:100%;max-width:100%;}
+
+      /* Mobile preview btn hidden on mobile */
+      .mobile-toggle{display:none;}
+    }
+
+    @media(max-width:400px){
+      .cert-grid{grid-template-columns:1fr;}
+      .hero-name{font-size:2.2rem;}
+    }
+  </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<button class="mobile-exit" id="mobileExit">✕ Quitter vue mobile</button>
+<div class="mobile-frame" id="mobileFrame">
+  <div class="mobile-notch"></div>
+  <iframe id="mobileIframe" src=""></iframe>
+</div>
+
+
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MT<span>/</span>ASR</div>
+  <ul>
+    <li><a href="#alternance">Alternance</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#certifications">Certifs</a></li>
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="CV_2026-03-09_Mathis_Tomassini.pdf" download class="btn btn-ghost" style="padding:.4rem 1rem;font-size:.75rem;">⬇ CV</a>
+    <button class="theme-toggle" id="themeBtn" title="Changer le thème">☀️</button>
+    <button class="mobile-toggle" id="mobileBtn" title="Vue téléphone">📱</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge"><span class="badge-dot"></span>Disponible · Alternance Bac+3 · Sept. 2026</div>
+  <h1 class="hero-name">Mathis<br/>Tomassini</h1>
+  <p class="hero-sub"><span class="hl">$</span> whoami — Technicien Supérieur Systèmes &amp; Réseaux</p>
+  <div id="typed-wrap"><span id="typed-text"></span></div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-num" data-count="200">0</div><div class="hstat-label">Users AD gérés</div></div>
+    <div class="hstat"><div class="hstat-num" data-count="7">0</div><div class="hstat-label">Certifications</div></div>
+    <div class="hstat"><div class="hstat-num" data-count="12">0</div><div class="hstat-label">Mois alternance</div></div>
+    <div class="hstat"><div class="hstat-num" data-count="22">0</div><div class="hstat-label">Ans</div></div>
+  </div>
+  <div class="hero-cta">
+    <a href="#alternance" class="btn btn-primary">🚀 Alternance Sept. 2026</a>
+    <a href="CV_2026-03-09_Mathis_Tomassini.pdf" download class="btn btn-purple">⬇ Télécharger CV</a>
+    <a href="#contact" class="btn btn-ghost">📬 Contact</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>scroll</span></div>
+</section>
+
+<!-- ALTERNANCE BANNER -->
+<div id="alternance">
+  <div class="alt-card reveal">
+    <div class="alt-label">🕐 Disponible à partir de septembre 2026</div>
+    <h2 class="alt-title">En recherche d'<span>alternance</span><br/>Bac+3 ASR / DevOps Junior</h2>
+    <p class="alt-desc">Après mon TSSR (ENi Saint-Herblain), je recherche une alternance de <strong>12 mois</strong> pour administrer des infrastructures IT, sécuriser des réseaux et automatiser des systèmes en entreprise.</p>
+    <div class="alt-tags">
+      <span class="alt-tag">📍 Aix-en-Provence / Nantes</span>
+      <span class="alt-tag">📅 12 mois</span>
+      <span class="alt-tag">🎓 Bac+3 ASR / DevOps</span>
+      <span class="alt-tag">🛡️ Admin Sys &amp; Réseau</span>
+      <span class="alt-tag">🔐 Cybersécurité</span>
+      <span class="alt-tag">☁️ Cloud / Infrastructure</span>
+    </div>
+    <div class="alt-actions">
+      <a href="#contact" class="btn btn-primary">Proposer une alternance →</a>
+      <a href="CV_2026-03-09_Mathis_Tomassini.pdf" download class="btn btn-ghost">⬇ Mon CV</a>
+    </div>
+  </div>
+</div>
+
+<!-- COMPÉTENCES -->
+<section id="skills">
+  <div class="section-label">Compétences</div>
+  <h2 class="section-title reveal">Compétences techniques</h2>
+  <div class="grid">
+    <div class="skill-card reveal">
+      <div class="skill-card-header"><div class="skill-icon" style="background:rgba(0,229,255,.1);">🐧</div><span class="skill-card-title">Systèmes</span></div>
+      <div class="skill-items"><span class="skill-chip">Linux Debian</span><span class="skill-chip">Kali Linux</span><span class="skill-chip">Windows Server</span><span class="skill-chip">Active Directory</span><span class="skill-chip">GPO</span><span class="skill-chip">MDM</span><span class="skill-chip">Sauvegarde Windows</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-header"><div class="skill-icon" style="background:rgba(139,92,246,.1);">🌐</div><span class="skill-card-title">Réseaux</span></div>
+      <div class="skill-items"><span class="skill-chip">TCP/IP</span><span class="skill-chip">DHCP / DNS</span><span class="skill-chip">VLAN</span><span class="skill-chip">Routage</span><span class="skill-chip">Cisco IOS</span><span class="skill-chip">Cisco NetAcad</span><span class="skill-chip">VPN</span><span class="skill-chip">Subnetting</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-header"><div class="skill-icon" style="background:rgba(245,158,11,.1);">🔐</div><span class="skill-card-title">Sécurité</span></div>
+      <div class="skill-items"><span class="skill-chip">Stormshield (CSNA)</span><span class="skill-chip">Firewall</span><span class="skill-chip">IDS/IPS</span><span class="skill-chip">Google Cybersecurity</span><span class="skill-chip">Kali Tools</span><span class="skill-chip">Sensibilisation</span><span class="skill-chip">ITIL 4</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-header"><div class="skill-icon" style="background:rgba(16,185,129,.1);">⚙️</div><span class="skill-card-title">Outils &amp; ITSM</span></div>
+      <div class="skill-items"><span class="skill-chip">GLPI</span><span class="skill-chip">CMDB</span><span class="skill-chip">Git</span><span class="skill-chip">Outils collaboratifs</span><span class="skill-chip">Schématisation</span><span class="skill-chip">Procédures</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-header"><div class="skill-icon" style="background:rgba(59,130,246,.1);">🤖</div><span class="skill-card-title">IA &amp; Prompt Engineering</span></div>
+      <div class="skill-items"><span class="skill-chip">Prompt Engineering</span><span class="skill-chip">Perplexity AI</span><span class="skill-chip">ChatGPT</span><span class="skill-chip">LLMs</span><span class="skill-chip">Veille IA</span></div>
+      <span class="notions-chip">Notions avancées</span>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-header"><div class="skill-icon" style="background:rgba(0,229,255,.07);">💻</div><span class="skill-card-title">Scripting</span></div>
+      <div class="skill-items"><span class="skill-chip">Bash / Shell</span><span class="skill-chip">PowerShell</span><span class="skill-chip">Python</span><span class="skill-chip">HTML / CSS</span></div>
+      <span class="notions-chip">Notions</span>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-header"><div class="skill-icon" style="background:rgba(139,92,246,.07);">☁️</div><span class="skill-card-title">Virtualisation &amp; Cloud</span></div>
+      <div class="skill-items"><span class="skill-chip">VMware ESXi</span><span class="skill-chip">Hyper-V</span><span class="skill-chip">VirtualBox</span><span class="skill-chip">Citrix</span><span class="skill-chip">Docker</span><span class="skill-chip">Proxmox</span></div>
+      <span class="notions-chip">Notions</span>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-header"><div class="skill-icon" style="background:rgba(16,185,129,.07);">🗣️</div><span class="skill-card-title">Langues</span></div>
+      <div class="skill-items"><span class="skill-chip">🇫🇷 Français — Natif</span><span class="skill-chip">🇬🇧 Anglais — B2</span><span class="skill-chip">🇮🇹 Italien — Notions</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Certifications</div>
+  <h2 class="section-title reveal">Badges &amp; Certifications</h2>
+  <div class="cert-grid">
+    <div class="cert-card reveal">
+      <div class="cert-badge" style="background:rgba(245,158,11,.1);">🛡️</div>
+      <div class="cert-info"><div class="cert-name">Google Cybersecurity</div><div class="cert-issuer">Google / Coursera</div><span class="cert-status cert-done">✓ Obtenu</span></div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge" style="background:rgba(59,130,246,.1);">🌐</div>
+      <div class="cert-info"><div class="cert-name">CCNA – Support &amp; Sécurité</div><div class="cert-issuer">Cisco NetAcad</div><span class="cert-status cert-done">✓ Obtenu</span></div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge" style="background:rgba(59,130,246,.1);">🔒</div>
+      <div class="cert-info"><div class="cert-name">Introduction Cybersécurité</div><div class="cert-issuer">Cisco NetAcad</div><span class="cert-status cert-done">✓ Obtenu</span></div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge" style="background:rgba(59,130,246,.1);">📡</div>
+      <div class="cert-info"><div class="cert-name">Notions de base Réseaux</div><div class="cert-issuer">Cisco NetAcad</div><span class="cert-status cert-done">✓ Obtenu</span></div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge" style="background:rgba(59,130,246,.1);">💻</div>
+      <div class="cert-info"><div class="cert-name">IT Essentials</div><div class="cert-issuer">Cisco NetAcad</div><span class="cert-status cert-done">✓ Obtenu</span></div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge" style="background:rgba(0,120,212,.1);">🪟</div>
+      <div class="cert-info"><div class="cert-name">Microsoft Intune</div><div class="cert-issuer">Microsoft Learning</div><span class="cert-status cert-wip">⏳ En cours</span></div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge" style="background:rgba(245,158,11,.1);">🔥</div>
+      <div class="cert-info"><div class="cert-name">CSNA Stormshield</div><div class="cert-issuer">Stormshield</div><span class="cert-status cert-wip">⏳ En préparation</span></div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge" style="background:rgba(139,92,246,.1);">📋</div>
+      <div class="cert-info"><div class="cert-name">ITIL 4 Foundation</div><div class="cert-issuer">PeopleCert</div><span class="cert-status cert-wip">⏳ En préparation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section id="parcours">
+  <div class="section-label">Parcours</div>
+  <h2 class="section-title reveal">Expériences professionnelles</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--orange);box-shadow:0 0 12px rgba(245,158,11,.4);"></div>
+      <div class="tl-period orange">06/2026 — 08/2026 · À VENIR</div>
+      <div class="tl-role">Stage Admin N2/N3 — Systèmes / Réseaux / Data / Cloud</div>
+      <div class="tl-org">🏥 CH-Montperrin · Aix-en-Provence</div>
+      <div class="tl-desc">Stage orienté administration avancée N2/N3 : gestion infrastructure systèmes et réseaux, data et environnements cloud. Montée en compétences vers le niveau DevOps junior.</div>
+      <div class="tl-tags">
+        <span class="tl-tag orange">Admin N2/N3</span>
+        <span class="tl-tag orange">Systèmes</span>
+        <span class="tl-tag orange">Réseaux</span>
+        <span class="tl-tag orange">Data</span>
+        <span class="tl-tag orange">Cloud</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot active"></div>
+      <div class="tl-period">07/2025 — 09/2025 · STAGE</div>
+      <div class="tl-role">Technicien Systèmes &amp; Réseaux N1/N2</div>
+      <div class="tl-org">🏥 CH-Montperrin · Aix-en-Provence</div>
+      <div class="tl-desc">Support technique N1/N2 sur site et à distance. Gestion de 200+ comptes Active Directory, administration pare-feux, maintenance parc informatique complet et rédaction de procédures techniques.</div>
+      <div class="tl-tags">
+        <span class="tl-tag">Support N1/N2</span>
+        <span class="tl-tag">Active Directory</span>
+        <span class="tl-tag">Pare-feux</span>
+        <span class="tl-tag">Gestion parc IT</span>
+        <span class="tl-tag">Procédures</span>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section-title reveal" style="margin-top:4rem;">Formations &amp; Diplômes</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot active"></div>
+      <div class="tl-period">01/2026 — 08/2026 · EN COURS</div>
+      <div class="tl-role">TP TSSR — Technicien Supérieur Systèmes Réseaux</div>
+      <div class="tl-org">🏫 ENi École Informatique · Saint-Herblain (44)</div>
+      <div class="tl-desc">Formation Bac+2 couvrant l'administration systèmes, l'infrastructure réseau, la virtualisation et la cybersécurité.</div>
+      <div class="tl-tags">
+        <span class="tl-tag">Admin Sys</span>
+        <span class="tl-tag">Infrastructure</span>
+        <span class="tl-tag">Sécurité</span>
+        <span class="tl-tag">Virtualisation</span>
+        <span class="tl-tag">ITIL 4</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">01/2025 — 10/2025</div>
+      <div class="tl-role">TP TAI — Technicien d'Assistance Informatique</div>
+      <div class="tl-org">🏫 Greta CFA Provence · Aix-en-Provence</div>
+      <div class="tl-desc">Certification professionnelle orientée support utilisateurs, maintenance PC, réseaux LAN et diagnostics techniques.</div>
+      <div class="tl-tags">
+        <span class="tl-tag">Support Technique</span>
+        <span class="tl-tag">Maintenance PC</span>
+        <span class="tl-tag">Réseaux LAN</span>
+        <span class="tl-tag">Diagnostic</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="border-color:var(--muted);"></div>
+      <div class="tl-period" style="color:var(--muted);">2022 — 2023</div>
+      <div class="tl-role">Baccalauréat Scientifique — NSI / Maths / LLCER Anglais</div>
+      <div class="tl-org">🎓 CNED · Distanciel</div>
+      <div class="tl-tags">
+        <span class="tl-tag" style="border-color:rgba(100,116,139,.3);color:var(--muted);background:rgba(100,116,139,.05);">NSI</span>
+        <span class="tl-tag" style="border-color:rgba(100,116,139,.3);color:var(--muted);background:rgba(100,116,139,.05);">Mathématiques</span>
+        <span class="tl-tag" style="border-color:rgba(100,116,139,.3);color:var(--muted);background:rgba(100,116,139,.05);">Anglais LLCER</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot target"></div>
+      <div class="tl-period purple">SEPT. 2026 · OBJECTIF</div>
+      <div class="tl-role">Bac+3 — Administrateur Systèmes &amp; Réseaux / DevOps Junior</div>
+      <div class="tl-org">🎯 Alternance 12 mois · Aix-en-Provence / Nantes</div>
+      <div class="tl-tags">
+        <span class="tl-tag purple">Admin Infra</span>
+        <span class="tl-tag purple">DevOps Junior</span>
+        <span class="tl-tag purple">Automatisation</span>
+        <span class="tl-tag purple">Cloud</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="section-label">Projets</div>
+  <h2 class="section-title reveal">Lab &amp; Réalisations</h2>
+  <div class="grid">
+    <div class="proj-card reveal">
+      <div class="proj-header"><div class="proj-icon">🏗️</div><span class="proj-status">✓ Réalisé</span></div>
+      <div class="proj-name">Infrastructure AD Virtualisée</div>
+      <div class="proj-desc">Déploiement d'un domaine Active Directory complet avec OU, GPO, gestion utilisateurs et groupes dans VMware.</div>
+      <div class="proj-metric">📊 200+ comptes AD · GPO multi-niveaux</div>
+      <div class="proj-stack"><span class="proj-chip">Windows Server</span><span class="proj-chip">Active Directory</span><span class="proj-chip">GPO</span><span class="proj-chip">VMware</span></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-header"><div class="proj-icon">📋</div><span class="proj-status">✓ Réalisé</span></div>
+      <div class="proj-name">Déploiement GLPI + CMDB</div>
+      <div class="proj-desc">Installation et configuration de GLPI avec base CMDB, gestion des tickets et inventaire automatisé FusionInventory.</div>
+      <div class="proj-metric">📊 500+ assets inventoriés · Tickets -30% délai</div>
+      <div class="proj-stack"><span class="proj-chip">GLPI</span><span class="proj-chip">ITIL 4</span><span class="proj-chip">Linux</span><span class="proj-chip">CMDB</span></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-header"><div class="proj-icon">🛡️</div><span class="proj-status">✓ Réalisé</span></div>
+      <div class="proj-name">Firewall Stormshield</div>
+      <div class="proj-desc">Configuration règles de filtrage, NAT, VPN IPSec et politiques de sécurité dans le cadre de la préparation CSNA.</div>
+      <div class="proj-metric">🔒 0 incident post-déploiement</div>
+      <div class="proj-stack"><span class="proj-chip">Stormshield</span><span class="proj-chip">Firewall</span><span class="proj-chip">VPN IPSec</span><span class="proj-chip">NAT</span></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-header"><div class="proj-icon">🌐</div><span class="proj-status">✓ Réalisé</span></div>
+      <div class="proj-name">Lab Réseau Cisco</div>
+      <div class="proj-desc">Architecture multi-VLAN avec routage inter-VLAN, STP, adressage IP et simulation complète sur Packet Tracer.</div>
+      <div class="proj-metric">🌐 5 VLANs · Routage inter-VLAN fonctionnel</div>
+      <div class="proj-stack"><span class="proj-chip">Cisco IOS</span><span class="proj-chip">VLAN</span><span class="proj-chip">Routage</span><span class="proj-chip">Packet Tracer</span></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-header"><div class="proj-icon">🐳</div><span class="proj-status wip">En cours</span></div>
+      <div class="proj-name">Home Lab Docker</div>
+      <div class="proj-desc">Serveur home-lab avec conteneurs Docker, services auto-hébergés (Plex, Portainer, Pi-hole) sur Debian.</div>
+      <div class="proj-metric">⚡ 6 services conteneurisés</div>
+      <div class="proj-stack"><span class="proj-chip">Docker</span><span class="proj-chip">Debian</span><span class="proj-chip">Portainer</span><span class="proj-chip">Bash</span></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-header"><div class="proj-icon">⚡</div><span class="proj-status wip">En cours</span></div>
+      <div class="proj-name">Automatisation PowerShell</div>
+      <div class="proj-desc">Scripts de création en masse d'utilisateurs AD, déploiement logiciels et génération de rapports d'inventaire CSV.</div>
+      <div class="proj-metric">⚡ Création 50+ users/min automatisée</div>
+      <div class="proj-stack"><span class="proj-chip">PowerShell</span><span class="proj-chip">Active Directory</span><span class="proj-chip">CSV</span><span class="proj-chip">Automation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PASSIONS -->
+<section id="passions">
+  <div class="section-label">Passions</div>
+  <h2 class="section-title reveal">En dehors du terminal</h2>
+  <div class="passion-grid">
+
+    <div class="passion-card reveal">
+      <div class="passion-emoji">🎮</div>
+      <div>
+        <div class="passion-title">Jeux vidéo</div>
+        <div class="passion-desc">RPG, souls-like, stratégie — passionné depuis toujours. Gaming PC &amp; console, modding et émulation.</div>
+      </div>
+    </div>
+
+    <div class="passion-card reveal">
+      <div class="passion-emoji">🎵</div>
+      <div>
+        <div class="passion-title">Musique</div>
+        <div class="passion-desc">Écoute active, découverte de nouveaux artistes et genres. La musique comme source de concentration et de créativité.</div>
+      </div>
+    </div>
+
+    <div class="passion-card reveal">
+      <div class="passion-emoji">🧗</div>
+      <div>
+        <div class="passion-title">Escalade</div>
+        <div class="passion-desc">Pratique régulière en salle. Un sport qui développe la rigueur, la persévérance et la résolution de problèmes — comme en IT.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label" style="justify-content:center;">Contact</div>
+  <h2 class="section-title reveal" style="text-align:center;">Prendre contact</h2>
+  <div class="contact-wrap">
+    <div class="contact-card reveal">
+      <p>Vous recrutez un alternant Bac+3 ASR/DevOps junior (12 mois) pour septembre 2026 ?<br/>Basé à Nantes et Aix-en-Provence, mobile sur le secteur.</p>
+      <div class="contact-links">
+        <a href="mailto:mathist3b@gmail.com" class="contact-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>mathist3b@gmail.com</a>
+        <a href="tel:+33615278527" class="contact-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>06 15 27 85 27</a>
+        <a href="https://www.linkedin.com/in/mathis-tomassini-29421b335" target="_blank" class="contact-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+        <a href="https://github.com/mathis-tomassini" target="_blank" class="contact-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>GitHub</a>
+        <a href="CV_2026-03-09_Mathis_Tomassini.pdf" download class="cv-download">📄 Télécharger CV PDF</a>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <h3>📨 Envoyer un message</h3>
+      <form action="mailto:mathist3b@gmail.com" method="GET" enctype="text/plain">
+        <div class="form-row">
+          <div class="form-field"><label>Nom</label><input type="text" name="from" placeholder="Jean Dupont" required/></div>
+          <div class="form-field"><label>Entreprise</label><input type="text" name="company" placeholder="Acme Corp"/></div>
+        </div>
+        <div class="form-field"><label>Sujet</label><input type="text" name="subject" placeholder="Proposition alternance Bac+3 ASR" value="Proposition alternance"/></div>
+        <div class="form-field"><label>Message</label><textarea name="body" placeholder="Bonjour Mathis, nous recherchons un alternant..."></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;border-radius:12px;padding:1rem;">Envoyer →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Mathis Tomassini</span> · Technicien Supérieur Systèmes &amp; Réseaux · Nantes / Aix-en-Provence
+</footer>
+
+<script>
+// ── CANVAS ──
+(function(){
+  const c=document.getElementById("bg-canvas"),ctx=c.getContext("2d");
+  let W,H;
+  const resize=()=>{W=c.width=window.innerWidth;H=c.height=window.innerHeight;};
+  resize(); window.addEventListener("resize",resize);
+  const pts=Array.from({length:40},()=>({x:Math.random()*3000,y:Math.random()*3000,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.5+.5,o:Math.random()*.4+.1}));
+  const GS=60;
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle="rgba(0,229,255,0.06)"; ctx.lineWidth=1;
+    for(let x=0;x<W;x+=GS){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<H;y+=GS){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    pts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(0,229,255,${p.o})`; ctx.fill();
+    });
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+// ── TYPED TEXT ──
+(function(){
+  const el=document.getElementById("typed-text");
+  const lines=["Alternance Bac+3 ASR / DevOps Junior · Sept. 2026","Admin Sys & Réseaux · Nantes / Aix-en-Provence","Active Directory · Stormshield · GLPI · Linux","Motivé, curieux et prêt à contribuer 🚀"];
+  let li=0,ci=0,del=false;
+  function render(txt){
+    el.innerHTML=txt+'<span class="cursor"></span>';
+  }
+  function type(){
+    const t=lines[li];
+    if(!del){
+      if(ci<=t.length){render(t.slice(0,ci));ci++;setTimeout(type,ci===t.length?2200:45);}
+      else{del=true;setTimeout(type,300);}
+    }else{
+      if(ci>=0){render(t.slice(0,ci));ci--;setTimeout(type,22);}
+      else{del=false;li=(li+1)%lines.length;setTimeout(type,400);}
+    }
+  }
+  render("");
+  type();
+})();
+
+// ── COUNTER ANIMATION ──
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target,target=+el.dataset.count,suffix=el.dataset.suffix||"";
+      let start=0,dur=1500,step=16;
+      const inc=target/(dur/step);
+      const timer=setInterval(()=>{
+        start=Math.min(start+inc,target);
+        el.textContent=Math.floor(start)+suffix;
+        if(start>=target)clearInterval(timer);
+      },step);
+      obs.unobserve(el);
+    });
+  },{threshold:.5});
+  document.querySelectorAll("[data-count]").forEach(el=>obs.observe(el));
+})();
+
+// ── SCROLL REVEAL ──
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("visible"); });
+  },{threshold:.12});
+  document.querySelectorAll(".reveal,.tl-item").forEach(el=>obs.observe(el));
+})();
+
+// ── THEME TOGGLE ──
+(function(){
+  const btn=document.getElementById("themeBtn");
+  const html=document.documentElement;
+  btn.addEventListener("click",()=>{
+    const isDark=html.dataset.theme==="dark";
+    html.dataset.theme=isDark?"light":"dark";
+    btn.textContent=isDark?"🌙":"☀️";
+  });
+})();
+
+
+// ── MOBILE PREVIEW ──
+(function(){
+  const btn=document.getElementById("mobileBtn");
+  const exit=document.getElementById("mobileExit");
+  const frame=document.getElementById("mobileFrame");
+  const iframe=document.getElementById("mobileIframe");
+  btn.addEventListener("click",()=>{
+    iframe.src=window.location.href;
+    document.body.classList.add("mobile-mode");
+  });
+  exit.addEventListener("click",()=>{
+    document.body.classList.remove("mobile-mode");
+    iframe.src="";
+  });
+})();
+</script>
+</body>
+</html>
